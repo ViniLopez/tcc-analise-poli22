@@ -16,13 +16,13 @@ def main():
 
 		if perfil == 'Investidor':
 			st.header("Nos conte mais de sua tese de investimentos")
+			with st.form("cadastro", clear_on_submit=True):
+				nome = st.text_input("Nome:")
+				email = st.text_input("Email:")
+				telefone = st.text_input("Telefone:")
 
-			nome = st.text_input("Nome:")
-			email = st.text_input("Email:")
-			telefone = st.text_input("Telefone:")
-
-			st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
-			submit = st.form_submit_button("Fazer cadastro")
+				st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
+				submit = st.form_submit_button("Fazer cadastro")
 
 		elif perfil == 'Empreendedor':
 			st.header("Nos conte mais de sua empresa")

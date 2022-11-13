@@ -24,6 +24,9 @@ def main():
 				st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
 				submit = st.form_submit_button("Fazer cadastro")
 
+				if submit:
+					st.success('Cadastro concluído com sucesso!')
+
 		elif perfil == 'Empreendedor':
 			st.header("Nos conte mais de sua empresa")
 		else:

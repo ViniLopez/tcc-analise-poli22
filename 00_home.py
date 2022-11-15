@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-!pip install streamlit-extras
-
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 

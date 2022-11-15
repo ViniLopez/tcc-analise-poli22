@@ -11,7 +11,7 @@ st.write("Ferramenta de suporte para decisão de investimento em startups a part
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
 
-@st.experimental_memo(ttl=600)
+@st.experimental_singleton(ttl=600)
 def get_database(database_name):
     # Provide the mongodb atlas url to connect python to mongodb using pymongo
     CONNECTION_STRING = "mongodb+srv://tcc_avc:adm321@tcccluster.wzgcevd.mongodb.net/test"

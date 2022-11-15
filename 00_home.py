@@ -5,8 +5,8 @@ from streamlit_extras.switch_page_button import switch_page
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 
-st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")
-perfil = st.selectbox('Eu sou:', ['Investidor', 'Empreendedor'])
+st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você e faça seu cadastro:")
+perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
 
 if perfil == 'Investidor':
   # Cadastro inicial com informações pessoais e da tese de investimentos

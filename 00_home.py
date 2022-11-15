@@ -10,11 +10,6 @@ st.write("Ferramenta de suporte para decisão de investimento em startups a part
 ###################################################################################
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
-@st.experimental_singleton
-def init_connection():
-    return pymongo.MongoClient(**st.secrets["mongo"])
-
-client = init_connection()
 
 @st.experimental_memo(ttl=600)
 def get_database(database_name):

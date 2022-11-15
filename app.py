@@ -35,8 +35,8 @@ def main():
 		
 		# Explicação do projeto
 		st.markdown("""---""")
-		st.subheader("Propósito do projeto:"
-		st.write("Temos a visão de nos tornarmos um canal de conexão entre Investidores e Empreendedores. Através desta plataforma, é possível encontrar potenciais novas parcerias! Conheça mais na página a seguir:)
+		st.subheader("Propósito do projeto:")
+		st.write("Temos a visão de nos tornarmos um canal de conexão entre Investidores e Empreendedores. Através desta plataforma, é possível encontrar potenciais novas parcerias! Conheça mais na página a seguir:")
 		if(st.button("Conhecer saber mais do projeto!")):
 			choice = 'About'
 

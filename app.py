@@ -20,15 +20,11 @@ def main():
 				email = st.text_input("Email:")
 				telefone = st.text_input("Telefone:")
 
-				submit = st.form_submit_button("Fazer cadastro")
-
-				if submit:
-					st.success('Cadastro concluído com sucesso!')
+				st.write("\nAgora, sobre sua tese de investimentos:")
 			
-			with st.form("Agora, sobre sua tese de investimentos", clear_on_submit=True):
 				tese = st.file_uploader('Faça upload das últimas empresas que você analisou aqui: (CSV)', type='csv')
-				submit = st.form_submit_button("Começar análise")
 				aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
+				submit = st.form_submit_button("Começar análise")
 				if (submit and aceito_lgpd):
 					st.success('Cadastro concluído com sucesso!')
 					tese = pd.read_csv(tese)

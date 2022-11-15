@@ -25,22 +25,22 @@ if perfil == 'Investidor':
     tese = st.file_uploader('Faça upload das últimas empresas que você analisou aqui: (CSV)', type='csv')
     aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
     submit = st.form_submit_button("Começar análise")
-    if (submit and aceito_lgpd):
-      st.success('Cadastro concluído com sucesso!')
-      tese = pd.read_csv(tese)
-      # Iniciar EDA e descrição da tese
-      st.markdown("""---""")
-      st.write("Tese do " + nome + ":")
-      with st.spinner('Analisando sua tese...'):
-        st.write(tese.head())
-        # EDA
-        # Principais variáveis do modelo Random Forest
-        # Modelo escolhido
-        # Acurácia do modelo
+  if (submit and aceito_lgpd):
+    st.success('Cadastro concluído com sucesso!')
+    tese = pd.read_csv(tese)
+    # Iniciar EDA e descrição da tese
+    st.markdown("""---""")
+    st.write("Tese do " + nome + ":")
+    with st.spinner('Analisando sua tese...'):
+      st.write(tese.head())
+      # EDA
+      # Principais variáveis do modelo Random Forest
+      # Modelo escolhido
+      # Acurácia do modelo
 
-      pag_avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa:")
-      if pag_avaliar_empresa:
-        switch_page("01_avaliar_empresa")
+    pag_avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa:")
+    if pag_avaliar_empresa:
+      switch_page("01_avaliar_empresa")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")

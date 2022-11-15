@@ -17,6 +17,9 @@ def init_connection():
 
 client = init_connection()
 
+import pdb
+pdb.set_trace()
+
 # Pull data from the collection.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
 @st.experimental_memo(ttl=600)
@@ -27,6 +30,7 @@ def get_data():
     return items
 
 items = get_data()
+pdb.set_trace()
 
 # Print results.
 for item in items:

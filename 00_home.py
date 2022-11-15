@@ -15,7 +15,7 @@ perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
 
 if perfil == 'Investidor':
   # Cadastro inicial com informações pessoais e da tese de investimentos
-  with st.form("Nos conte mais sobre você:", clear_on_submit=True):
+  with st.form("Nos conte mais sobre você:"):
     nome = st.text_input("Nome:")
     email = st.text_input("Email:")
     telefone = st.text_input("Telefone:")

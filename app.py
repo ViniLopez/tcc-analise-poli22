@@ -32,8 +32,13 @@ def main():
 
 		elif perfil == 'Empreendedor':
 			st.header("Nos conte mais de sua empresa")
-		else:
-			st.write("Basta escolher na lista acima, o perfil que melhor se encaixa e iniciaremos a configuração de sua conta.")
+		
+		# Explicação do projeto
+		st.markdown("""---""")
+		st.subheader("Propósito do projeto:"
+		st.write("Temos a visão de nos tornarmos um canal de conexão entre Investidores e Empreendedores. Através desta plataforma, é possível encontrar potenciais novas parcerias! Conheça mais na página a seguir:)
+		if(st.button("Conhecer saber mais do projeto!")):
+			choice = 'About'
 
 	if choice == 'About':
 		st.subheader("O projeto é da Aline, Camila e Vinicius para o TCC da Escola Politécnica 2022, departamento PCS.")

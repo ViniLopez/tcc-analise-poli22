@@ -25,16 +25,15 @@ def main():
 
 				if submit:
 					st.success('Cadastro concluído com sucesso!')
-					
+			
 			with st.form("Agora, sobre sua tese de investimentos", clear_on_submit=True):
 				tese = st.file_uploader('Faça upload das últimas empresas que você analisou aqui: (CSV)', type='csv')
 				submit = st.form_submit_button("Começar análise")
 				aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
 				if (submit and aceito_lgpd):
 					st.success('Cadastro concluído com sucesso!')
-					
-			tese = pd.DataFrame(tese)
-			st.write(tese.head)
+					tese = pd.DataFrame(tese)
+					st.write(tese.head)
 
 		elif perfil == 'Empreendedor':
 			st.header("Nos conte mais de sua empresa")

@@ -11,8 +11,6 @@ st.write("Ferramenta de suporte para decisão de investimento em startups a part
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
 
-@st.experimental_singleton
-#----------
 import json
 import pdb
 

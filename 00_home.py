@@ -23,6 +23,13 @@ if perfil == 'Investidor':
     st.write("\nAgora, sobre sua tese de investimentos:")
 
     tese = st.file_uploader('Faça upload das últimas empresas que você analisou aqui: (CSV)', type='csv')
+
+    guia_importacao =  '''teste, oi'''
+    st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese/csv')
+    
+    if (st.download_button):
+      st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
+
     aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
     submit = st.form_submit_button("Começar análise")
   if (submit and aceito_lgpd):

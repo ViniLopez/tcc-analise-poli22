@@ -4,7 +4,8 @@ import pandas as pd
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 
-st.markdown('<a href="/99_about" target="_self">Conheça mais do projeto</a>', unsafe_allow_html=True)
+from streamlit_extras.switch_page_button import switch_page
+switch_page("about")
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")
 perfil = st.selectbox('Eu sou:', ['Investidor', 'Empreendedor'])

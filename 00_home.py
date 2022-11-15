@@ -22,8 +22,13 @@ def get_database(database_name):
 
 items = get_database('users')
 
-for item in items:
-    st.write(f"{item['name']} has a {item['email']}")
+profile_collection = items['profile']
+message = profile_collection.find_one({"_user_name": "jocaJ"})
+
+st.write(f"{message['name']} has a {message['email']}")
+
+#for item in items:
+#    st.write(f"{item['name']} has a {item['email']}")
 ###################################################################################
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")

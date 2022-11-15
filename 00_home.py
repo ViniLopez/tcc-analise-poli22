@@ -2,9 +2,32 @@ import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
+import pymongo
 
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
+
+###################################################################################
+# Initialize connection.
+# Uses st.experimental_singleton to only run once.
+@st.experimental_singleton
+def init_connection():
+    return pymongo.MongoClient(**st.secrets["mongo"])
+
+client = init_connection()
+
+@st.experimental_memo(ttl=600)
+def get_data():
+    db = client.users
+    items = db.profile.find()
+    items = list(items)  # make hashable for st.experimental_memo
+    return items
+
+items = get_data()
+
+for item in items:
+    st.write(f"{item['name']} has a :{item['email']}:")
+###################################################################################
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")
 perfil = st.selectbox('Eu sou:', ['Investidor', 'Empreendedor'])

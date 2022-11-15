@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
-import pymongo
+from pymongo import MongoClient
 
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
@@ -17,13 +17,15 @@ def init_connection():
 client = init_connection()
 
 @st.experimental_memo(ttl=600)
-def get_data():
-    db = client.users
-    items = db.profile.find()
-    items = list(items)  # make hashable for st.experimental_memo
-    return items
+def get_database(database_name):
+    # Provide the mongodb atlas url to connect python to mongodb using pymongo
+    CONNECTION_STRING = "mongodb+srv://tcc_avc:adm321@tcccluster.wzgcevd.mongodb.net/test"
+    # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
+    db_client = MongoClient(CONNECTION_STRING)
+    # Create the database for our example (we will use the same database throughout the tutorial
+    return db_client[database_name]
 
-items = get_data()
+items = get_database('users')
 
 for item in items:
     st.write(f"{item['name']} has a :{item['email']}:")

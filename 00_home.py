@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
+# Funções do algoritmo
+
+
+# FrontEnd pelo StreamLit
+
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 
@@ -26,17 +31,16 @@ if perfil == 'Investidor':
       # Iniciar EDA e descrição da tese
       st.markdown("""---""")
       st.write("Tese do " + nome + ":")
-      with st.spinner('Wait for it...'):
+      with st.spinner('Analisando sua tese...'):
         st.write(tese.head())
         # EDA
         # Principais variáveis do modelo Random Forest
         # Modelo escolhido
         # Acurácia do modelo
 
-      botao = st.button("Cadastrar e avaliar uma empresa:")
-      #if botao:
-        # Salvar as variáveis do modelo para rodar
-        #switch_page("01_avaliar_empresa")
+      pag_avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa:")
+      if pag_avaliar_empresa:
+        switch_page("01_avaliar_empresa")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")

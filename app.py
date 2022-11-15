@@ -6,12 +6,12 @@ import pandas as pd
 
 def main():
 	st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
-	st.subheader("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
+	st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 	pages = ["Home", "About"]
 	choice = st.sidebar.selectbox('Menu', pages)
 
 	if choice == 'Home':
-		st.write("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")
+		st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")
 		perfil = st.selectbox('Eu sou:', ['Investidor', 'Empreendedor'])
 
 		if perfil == 'Investidor':
@@ -31,7 +31,7 @@ def main():
 				aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
 				if (submit and aceito_lgpd):
 					st.success('Cadastro concluído com sucesso!')
-					tese = pd.DataFrame(tese)
+					tese = pd.read_csv(tese)
 					st.write(tese.head())
 
 		elif perfil == 'Empreendedor':

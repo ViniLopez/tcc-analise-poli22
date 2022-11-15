@@ -12,13 +12,11 @@ st.write("Ferramenta de suporte para decisão de investimento em startups a part
 # Uses st.experimental_singleton to only run once.
 
 @st.experimental_singleton
-def init_connection():
-    return pymongo.MongoClient(**st.secrets["mongo"])
+#def init_connection():
+#    return pymongo.MongoClient(**st.secrets["mongo"])
 
-client = init_connection()
-
-import pdb
-pdb.set_trace()
+client = pymongo.MongoClient("mongodb+srv://tcc_avc:adm321@tcccluster.wzgcevd.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
+db = client.test
 
 # Pull data from the collection.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.

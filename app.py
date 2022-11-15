@@ -11,7 +11,6 @@ def main():
 	choice = st.sidebar.selectbox('Menu', pages)
 
 	if choice == 'Home':
-		st.subheader("Página inicial do projeto")
 		st.write("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")
 		perfil = st.selectbox('Eu sou:', ['Investidor', 'Empreendedor'])
 
@@ -33,7 +32,7 @@ def main():
 				if (submit and aceito_lgpd):
 					st.success('Cadastro concluído com sucesso!')
 					tese = pd.DataFrame(tese)
-					st.write(tese.head)
+					st.write(tese.head())
 
 		elif perfil == 'Empreendedor':
 			st.header("Nos conte mais de sua empresa")

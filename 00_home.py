@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
-from pymongo import MongoClient
+import pymongo
 
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
@@ -11,24 +11,27 @@ st.write("Ferramenta de suporte para decisão de investimento em startups a part
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
 
-@st.experimental_singleton(ttl=600)
-def get_database(database_name):
-    # Provide the mongodb atlas url to connect python to mongodb using pymongo
-    CONNECTION_STRING = "mongodb+srv://tcc_avc:adm321@tcccluster.wzgcevd.mongodb.net/test"
-    # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
-    db_client = MongoClient(CONNECTION_STRING)
-    # Create the database for our example (we will use the same database throughout the tutorial
-    return db_client[database_name]
+@st.experimental_singleton
+def init_connection():
+    return pymongo.MongoClient(**st.secrets["mongo"])
 
-items = get_database('users')
+client = init_connection()
 
-profile_collection = items['profile']
-message = profile_collection.find_one({"_user_name": "jocaJ"})
+# Pull data from the collection.
+# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+@st.experimental_memo(ttl=600)
+def get_data():
+    db = client.users
+    items = db.profile.find()
+    items = list(items)  # make hashable for st.experimental_memo
+    return items
 
-st.write(f"{message['name']} has a {message['email']}")
+items = get_data()
 
-#for item in items:
-#    st.write(f"{item['name']} has a {item['email']}")
+# Print results.
+for item in items:
+    st.write(f"{item['name']} has a {item['email']}")
+    
 ###################################################################################
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")

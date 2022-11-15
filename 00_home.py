@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-#st.markdown("# Home")
-#st.sidebar.markdown("# Home")
-
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 

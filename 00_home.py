@@ -35,7 +35,7 @@ if perfil == 'Investidor':
         # Acurácia do modelo
 
       botao = st.button("Cadastrar e avaliar uma empresa:")
-      if botao:
+      #if botao:
         # Salvar as variáveis do modelo para rodar
         #switch_page("01_avaliar_empresa")
 

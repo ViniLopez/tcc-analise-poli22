@@ -23,7 +23,7 @@ def get_database(database_name):
 items = get_database('users')
 
 for item in items:
-    st.write(f"{item['name']} has a :{item['email']}:")
+    st.write(f"{item['name']} has a {item['email']}")
 ###################################################################################
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")

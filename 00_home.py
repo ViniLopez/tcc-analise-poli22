@@ -2,78 +2,8 @@ import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
-import pymongo
-
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
-
-###################################################################################
-# Initialize connection.
-# Uses st.experimental_singleton to only run once.
-
-import json
-import pdb
-
-import bson.json_util as json_util
-from flask import Flask, jsonify, make_response, request
-import pymongo
-from pymongo import MongoClient
-
-app = Flask(__name__)
-app.config["DEBUG"] = True
-
-def get_database(database_name):
-    # Provide the mongodb atlas url to connect python to mongodb using pymongo
-    CONNECTION_STRING = "mongodb+srv://tcc_avc:adm321@tcccluster.wzgcevd.mongodb.net/test"
-    # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
-    db_client = MongoClient(CONNECTION_STRING)
-    # Create the database for our example (we will use the same database throughout the tutorial
-    return db_client[database_name]
-
-@app.route('/', methods=['GET'])
-def home():
-    return "this is an endpoint"
-
-client = pymongo.MongoClient("mongodb+srv://tcc_avc:adm321@tcccluster.wzgcevd.mongodb.net/?retryWrites=true&w=majority")
-
-db_users = get_database('users')
-db_companies = get_database('companies')
-db_investors = get_database('investors_theories')
-db_results = get_database('results')
-
-# bp = Blueprint("bp",__name__)
-#start Flask app    
-# cors = CORS(app, support_credentials=True)    
-# app.secret_key = SECRET_KEY
-# app.config['CORS_HEADERS'] = CORS_HEADERS  
-# if TEST_MODE == 'ON': app.run(debug=True)
-# else: app.run(host='0.0.0.0', port=80, debug = True)
-app.run()
-
-#----------
-"""
-def init_connection():
-    return pymongo.MongoClient(**st.secrets["mongo"], server_api=ServerApi('1'))
-
-client = init_connection()
-
-# Pull data from the collection.
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-@st.experimental_memo(ttl=600)
-def get_data():
-    db = client.users
-    items = db.profile.find()
-    items = list(items)  # make hashable for st.experimental_memo
-    return items
-
-items = get_data()
-pdb.set_trace()
-
-# Print results.
-for item in items:
-    st.write(f"{item['name']} has a {item['email']}")
-"""    
-###################################################################################
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você:")
 perfil = st.selectbox('Eu sou:', ['Investidor', 'Empreendedor'])

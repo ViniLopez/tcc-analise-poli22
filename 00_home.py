@@ -12,15 +12,28 @@ st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você e faç
 perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
 
 if perfil == 'Investidor':
-  
-  st.write("Baixe o modelo de importação dos dados! Preencha-o com as informações de todas as empresas que você já avaliou, e a decisão final!")
 
-  # Camila: GET de um modelo de tabela
-  guia_importacao =  '''teste, oi'''
-  baixou_modelo = st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese.csv')
-  if (baixou_modelo):
-    st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
+  col1, col2 = st.columns(2)
   
+  # Modelo para baixar e preencher
+  with col1:
+    st.write("Baixe o modelo de importação dos dados! Preencha-o com as informações de todas as empresas que você já avaliou, e a decisão final!")
+    # Camila: GET de um modelo de tabela
+    guia_importacao =  '''teste, oi'''
+    baixou_modelo = st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese.csv')
+    if (baixou_modelo):
+      st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
+  
+  # Testes usados
+  with col2:
+    st.write("Caso queira entender como funciona primeiro, preparamos este conjunto de dados para você simular!")
+    # Camila: GET da tabela que usamos de teste
+    exemplo_tese =  '''teste, oi'''
+    #st.write(exemplo_tese.head())
+    baixou_modelo = st.download_button('Download CSV', exemplo_tese, 'exemplo_tese.csv')
+    if (baixou_modelo):
+      st.write('Download feito! Siga adiante!')
+      
   # Cadastro inicial com informações pessoais e da tese de investimentos
   with st.form("Nos conte mais sobre você:", clear_on_submit=False):
     nome = st.text_input("Nome:", placeholder="Fulano da Silva")

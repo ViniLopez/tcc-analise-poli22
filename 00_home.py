@@ -45,9 +45,6 @@ if perfil == 'Investidor':
     nome = st.text_input("Nome:", placeholder="Fulano da Silva")
     email = st.text_input("Email:", placeholder="fulano.silva@gmail.com")
     telefone = st.text_input("Telefone:", placeholder="(__) _____-____")
-
-    # Guardar essa informação ao longo das páginas
-    st.experimental_memo(nome, persist='disk')
     
     st.write("\nAgora, sobre sua tese de investimentos:")
 

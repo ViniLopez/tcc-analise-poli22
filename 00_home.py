@@ -17,9 +17,8 @@ if perfil == 'Investidor':
   
   st.write("Baixe o modelo de importação dos dados! Preencha-o com as informações de todas as empresas que você já avaliou, e a decisão final!")
   guia_importacao =  '''teste, oi'''
-  st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese/csv')
-
-  if (st.download_button):
+  baixou_modelo = st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese.csv')
+  if (baixou_modelo):
     st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
   
   # Cadastro inicial com informações pessoais e da tese de investimentos

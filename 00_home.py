@@ -56,7 +56,7 @@ elif perfil == 'Empreendedor':
   with st.form("Nos conte mais sobre você:", clear_on_submit=False):
     nome_founder =  st.text_input("Seu nome:", placeholder="Fulano da Silva")
     email_founder = st.text_input("Email:", placeholder="fulano.silva@gmail.com")
-    telefone_founder = st.text_input("Telefone:", , placeholder="(__) _____-____")
+    telefone_founder = st.text_input("Telefone:", placeholder="(__) _____-____")
     nome_founder =  st.text_input("Nome da sua empresa:", placeholder="Nubank")
     data_fundacao = st.date_input("Data da fundação:", max_value=datetime.date.today())
     data_submissao = datetime.date.today()

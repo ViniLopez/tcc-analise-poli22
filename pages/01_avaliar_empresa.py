@@ -4,8 +4,8 @@ from streamlit_extras.switch_page_button import switch_page
 import datetime
 import time
 
-
 st.title("Tese carregada - Análise de empresa")
+st.write("Preencha os dados a seguir para avaliar a aderência da empresaà tese:")
 
 # Camila - GET nome do investidor 
 # Camila - GET variáveis X e Y da tese, pré-processada na home

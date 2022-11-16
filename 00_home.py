@@ -42,7 +42,6 @@ if perfil == 'Investidor':
   # Cadastro inicial com informações pessoais e da tese de investimentos
   with st.form("Nos conte mais sobre você:", clear_on_submit=False):
 
-    @st.experimental_memo
     nome = st.text_input("Nome:", placeholder="Fulano da Silva")
     email = st.text_input("Email:", placeholder="fulano.silva@gmail.com")
     telefone = st.text_input("Telefone:", placeholder="(__) _____-____")

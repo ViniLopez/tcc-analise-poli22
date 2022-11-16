@@ -64,8 +64,9 @@ if perfil == 'Investidor':
       # Principais variáveis do modelo Random Forest
       # Modelo escolhido
       # Acurácia do modelo
-    if (st.button("Finalizar cadastro e avaliar uma empresa", key='mudar_pag')):
-      switch_page("avaliar empresa")
+  avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
+  if(avaliar_empresa):
+    switch_page("avaliar empresa")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")

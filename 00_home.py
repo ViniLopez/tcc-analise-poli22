@@ -4,7 +4,9 @@ from streamlit_extras.switch_page_button import switch_page
 import datetime
 import time
 
-# FrontEnd pelo StreamLit
+###########################
+# FrontEnd pelo StreamLit #
+###########################
 
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
@@ -22,7 +24,7 @@ if perfil == 'Investidor':
   # Modelo para baixar e preencher
   with col1:
     st.write("Baixe o modelo de importação dos dados! Preencha-o com as informações de todas as empresas que você já avaliou, e a decisão final!")
-    # Camila: GET de um modelo de tabela
+    # Camila: GET de um modelo de tabela vazia
     guia_importacao =  '''teste, oi'''
     baixou_modelo = st.download_button('Download modelo', guia_importacao, 'guia_importacao_tese.csv')
     if (baixou_modelo):
@@ -54,15 +56,32 @@ if perfil == 'Investidor':
     submit = st.form_submit_button("Começar análise")
 
   if (submit and aceito_lgpd and tese is not None):
+
+    # Camila: POST informações de cadastro acima
+
     st.success('Cadastro concluído com sucesso!')
     tese = pd.read_csv(tese)
+
     # Iniciar EDA e descrição da tese
     st.markdown("""---""")
     st.write("Tese do " + nome + ":")
     with st.spinner('Analisando sua tese...'):
       st.write(tese.head())
-      # EDA
+      # Modulo 1 Colab - Data Augmentation
+      # Modulo 2 Colab - Treinar o modelo
+      # Modulo 3 Colab - Limpeza dos dados
+      # Modulo 4 Colab - EDA
+      # Modulo 5 Colab - Engenharia de variáveis
+      
+      # Camila: POST conjuntos X e Y da tese
+      
       # Principais variáveis do modelo Random Forest
+
+      # Modulo 6 Colab - Treino dos modelos
+      # Modulo 7 Colab - Aplicação dos dois
+        # comparar .score e ver quem é maior
+        # Camila: POST modelo escolhido
+
       # Modelo escolhido
       # Acurácia do modelo
   avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
@@ -84,6 +103,7 @@ elif perfil == 'Empreendedor':
     prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
     submit = st.form_submit_button("Fazer cadastro")                                 
   if submit:
+      # Camila: POST informações de cadastro acima
       st.success('Cadastro concluído com sucesso! Redirecionando para a página de escolha de teses em instantes...')
       time.sleep(3)
       switch_page("escolher investidor")

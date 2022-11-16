@@ -14,6 +14,14 @@ st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você e faç
 perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
 
 if perfil == 'Investidor':
+  
+  st.write("Baixe o modelo de importação dos dados! Preencha-o com as informações de todas as empresas que você já avaliou, e a decisão final!")
+  guia_importacao =  '''teste, oi'''
+  st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese/csv')
+
+  if (st.download_button):
+    st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
+  
   # Cadastro inicial com informações pessoais e da tese de investimentos
   with st.form("Nos conte mais sobre você:"):
     nome = st.text_input("Nome:")
@@ -23,12 +31,6 @@ if perfil == 'Investidor':
     st.write("\nAgora, sobre sua tese de investimentos:")
 
     tese = st.file_uploader('Faça upload das últimas empresas que você analisou aqui: (CSV)', type='csv')
-
-    guia_importacao =  '''teste, oi'''
-    st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese/csv')
-    
-    if (st.download_button):
-      st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
 
     aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
     submit = st.form_submit_button("Começar análise")

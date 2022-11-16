@@ -60,7 +60,7 @@ elif perfil == 'Empreendedor':
     nome_founder =  st.text_input("Nome da sua empresa:")
     data_fundacao = st.date_input("Data da fundação:")
     data_submissao = datetime.date.today()
-    qtd_funcionarios = st.number_input("Quantidade de funcionários:",format='%d')
+    qtd_funcionarios = st.number_input("Quantidade de funcionários:", value=0, step=1, format='%d')
     industria = st.text_input("À qual categoria sua indústria pertence?")
     prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
     st.write(prod_proprio)

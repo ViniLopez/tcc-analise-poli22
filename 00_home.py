@@ -22,7 +22,7 @@ if perfil == 'Investidor':
     st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
   
   # Cadastro inicial com informações pessoais e da tese de investimentos
-  with st.form("Nos conte mais sobre você:", clear_on_submit=false):
+  with st.form("Nos conte mais sobre você:", clear_on_submit=False):
     nome = st.text_input("Nome:")
     email = st.text_input("Email:")
     telefone = st.text_input("Telefone:")

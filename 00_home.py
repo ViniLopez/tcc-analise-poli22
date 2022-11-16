@@ -46,6 +46,9 @@ if perfil == 'Investidor':
     email = st.text_input("Email:", placeholder="fulano.silva@gmail.com")
     telefone = st.text_input("Telefone:", placeholder="(__) _____-____")
 
+    # Guardar essa informação ao longo das páginas
+    st.experimental_memo(nome, persist='disk')
+    
     st.write("\nAgora, sobre sua tese de investimentos:")
 
     tese = st.file_uploader('Faça upload das últimas empresas que você analisou aqui: (CSV)', type='csv')

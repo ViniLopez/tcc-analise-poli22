@@ -54,14 +54,14 @@ elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")
   # Cadastro inicial com informações pessoais e da tese de investimentos
   with st.form("Nos conte mais sobre você:", clear_on_submit=False):
-    nome_founder =  st.text_input("Seu nome:")
-    email_founder = st.text_input("Email:")
-    telefone_founder = st.text_input("Telefone:")
-    nome_founder =  st.text_input("Nome da sua empresa:")
+    nome_founder =  st.text_input("Seu nome:", placeholder="Fulano da Silva")
+    email_founder = st.text_input("Email:", placeholder="fulano.silva@gmail.com")
+    telefone_founder = st.text_input("Telefone:", , placeholder="(__) _____-____")
+    nome_founder =  st.text_input("Nome da sua empresa:", placeholder="Nubank")
     data_fundacao = st.date_input("Data da fundação:", max_value=datetime.date.today())
     data_submissao = datetime.date.today()
     qtd_funcionarios = st.number_input("Quantidade de funcionários:", min_value=1, value=1, step=1, format='%d')
-    industria = st.text_input("À qual categoria sua indústria pertence?")
+    industria = st.text_input("À qual categoria sua indústria pertence?", placeholder="Cleantech")
     prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
     submit = st.form_submit_button("Fazer cadastro")                                 
   if submit:

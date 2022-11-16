@@ -19,9 +19,9 @@ with st.form("Preencha os dados a seguir para avaliar a aderência da empresaà 
     # Camila - POST das infos da empresa acima
     
     submit = st.form_submit_button("Fazer cadastro")                                 
-  if submit:
-    st.success('')
-    with st.spinner('Analisando sua tese...'):
-      # Modulos: 6 e 7 do colab
-      st.write(tese.head())
-      time.sleep(2)
+    if submit:
+        st.success('')
+        with st.spinner('Analisando sua tese...'):
+        # Modulos: 6 e 7 do colab
+        st.write(tese.head())
+        time.sleep(2)

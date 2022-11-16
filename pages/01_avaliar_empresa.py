@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 
 st.title("Tese carregada - Análise de empresa")
 

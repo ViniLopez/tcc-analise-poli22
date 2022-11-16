@@ -83,7 +83,7 @@ elif perfil == 'Empreendedor':
     prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
     submit = st.form_submit_button("Fazer cadastro")                                 
   if submit:
-      st.success('Cadastro concluído com sucesso! Redirecionando para a página de escolha de teses...')
+      st.success('Cadastro concluído com sucesso! Redirecionando para a página de escolha de teses em instantes...')
       time.sleep(3)
       switch_page("escolher investidor")
 

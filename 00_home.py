@@ -75,4 +75,4 @@ st.subheader("Propósito do projeto:")
 st.write("Temos a visão de nos tornarmos um canal de conexão entre Investidores e Empreendedores. Através desta plataforma, é possível encontrar potenciais novas parcerias!")
 about = st.button("Conhecer saber mais do projeto!")
 if(about):
-  switch_page("99_about")
+  switch_page("about")

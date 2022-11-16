@@ -66,7 +66,7 @@ if perfil == 'Investidor':
 
     pag_avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa:")
     if pag_avaliar_empresa:
-      switch_page("01_avaliar_empresa")
+      switch_page("avaliar empresa")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")
@@ -85,7 +85,7 @@ elif perfil == 'Empreendedor':
   if submit:
       st.success('Cadastro concluído com sucesso! Redirecionando para a página de escolha de teses...')
       time.sleep(3)
-      switch_page("02_escolher_investidor")
+      switch_page("escolher investidor")
 
 # Explicação do projeto
 st.markdown("""---""")

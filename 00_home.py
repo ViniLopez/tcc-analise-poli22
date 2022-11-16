@@ -20,7 +20,7 @@ if perfil == 'Investidor':
     st.write("Baixe o modelo de importação dos dados! Preencha-o com as informações de todas as empresas que você já avaliou, e a decisão final!")
     # Camila: GET de um modelo de tabela
     guia_importacao =  '''teste, oi'''
-    baixou_modelo = st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese.csv')
+    baixou_modelo = st.download_button('Download modelo', guia_importacao, 'guia_importacao_tese.csv')
     if (baixou_modelo):
       st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
   
@@ -30,7 +30,7 @@ if perfil == 'Investidor':
     # Camila: GET da tabela que usamos de teste
     exemplo_tese =  '''teste, oi'''
     #st.write(exemplo_tese.head())
-    baixou_modelo = st.download_button('Download CSV', exemplo_tese, 'exemplo_tese.csv')
+    baixou_modelo = st.download_button('Download exemplo', exemplo_tese, 'exemplo_tese.csv')
     if (baixou_modelo):
       st.write('Download feito! Siga adiante!')
       

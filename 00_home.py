@@ -53,7 +53,7 @@ if perfil == 'Investidor':
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")
   # Cadastro inicial com informações pessoais e da tese de investimentos
-  with st.form("Nos conte mais sobre você:", clear_on_submit=false):
+  with st.form("Nos conte mais sobre você:", clear_on_submit=False):
     nome_founder =  st.text_input("Seu nome:")
     email_founder = st.text_input("Email:")
     telefone_founder = st.text_input("Telefone:")

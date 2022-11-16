@@ -50,7 +50,7 @@ if perfil == 'Investidor':
 
     aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
     submit = st.form_submit_button("Começar análise")
-  if (submit and aceito_lgpd):
+  if (submit and aceito_lgpd and tese!=NULL):
     st.success('Cadastro concluído com sucesso!')
     tese = pd.read_csv(tese)
     # Iniciar EDA e descrição da tese

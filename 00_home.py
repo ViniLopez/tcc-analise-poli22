@@ -63,7 +63,6 @@ elif perfil == 'Empreendedor':
     qtd_funcionarios = st.number_input("Quantidade de funcionários:", min_value=1, value=1, step=1, format='%d')
     industria = st.text_input("À qual categoria sua indústria pertence?")
     prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
-    st.write(prod_proprio)
     submit = st.form_submit_button("Fazer cadastro")                                 
   if submit:
       st.success('Cadastro concluído com sucesso! Redirecionando para a página de escolha de teses...')

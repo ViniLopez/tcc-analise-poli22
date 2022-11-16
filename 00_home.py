@@ -14,6 +14,8 @@ st.markdown("""---""")
 
 if perfil == 'Investidor':
 
+  st.write("Legal! Agora, faremos seu cadastro. Para isso precisaremos de um registro em planilha de empresas que você já analisou anteriormente e decidiu (investir ou não).
+  
   col1, col2 = st.columns(2)
   
   # Modelo para baixar e preencher

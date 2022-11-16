@@ -1,9 +1,7 @@
 import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
-
-# Funções do algoritmo
-
+import datetime
 
 # FrontEnd pelo StreamLit
 
@@ -16,13 +14,15 @@ perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
 if perfil == 'Investidor':
   
   st.write("Baixe o modelo de importação dos dados! Preencha-o com as informações de todas as empresas que você já avaliou, e a decisão final!")
+
+  # Camila: GET de um modelo de tabela
   guia_importacao =  '''teste, oi'''
   baixou_modelo = st.download_button('Download CSV', guia_importacao, 'guia_importacao_tese.csv')
   if (baixou_modelo):
     st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
   
   # Cadastro inicial com informações pessoais e da tese de investimentos
-  with st.form("Nos conte mais sobre você:"):
+  with st.form("Nos conte mais sobre você:", clear_on_submit=false):
     nome = st.text_input("Nome:")
     email = st.text_input("Email:")
     telefone = st.text_input("Telefone:")
@@ -52,6 +52,23 @@ if perfil == 'Investidor':
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")
+  # Cadastro inicial com informações pessoais e da tese de investimentos
+  with st.form("Nos conte mais sobre você:", clear_on_submit=false):
+    nome_founder =  st.text_input("Seu nome:")
+    email_founder = st.text_input("Email:")
+    telefone_founder = st.text_input("Telefone:")
+    nome_founder =  st.text_input("Nome da sua empresa:")
+    data_fundacao = st.date_input("Data da fundação:")
+    data_submissao = datetime.date.today()
+    qtd_funcionarios = st.number_input("Quantidade de funcionários:",format='%d')
+    industria = st.text_input("À qual categoria sua indústria pertence?")
+    prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
+    st.write(prod_proprio)
+    submit = st.form_submit_button("Fazer cadastro")                                 
+  if submit:
+      st.success('Cadastro concluído com sucesso! Redirecionando para a página de escolha de teses...')
+      time.sleep(3)
+      switch_page("02_escolher_investidor")
 
 # Explicação do projeto
 st.markdown("""---""")

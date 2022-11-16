@@ -10,6 +10,7 @@ st.write("Ferramenta de suporte para decisão de investimento em startups a part
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você e faça seu cadastro:")
 perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
+st.markdown("""---""")
 
 if perfil == 'Investidor':
 
@@ -33,7 +34,8 @@ if perfil == 'Investidor':
     baixou_modelo = st.download_button('Download exemplo', exemplo_tese, 'exemplo_tese.csv')
     if (baixou_modelo):
       st.write('Download feito! Siga adiante!')
-      
+  st.markdown("""---""")
+  
   # Cadastro inicial com informações pessoais e da tese de investimentos
   with st.form("Nos conte mais sobre você:", clear_on_submit=False):
     nome = st.text_input("Nome:", placeholder="Fulano da Silva")

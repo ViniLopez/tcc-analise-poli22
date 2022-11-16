@@ -22,6 +22,6 @@ with st.form("Preencha os dados a seguir para avaliar a aderência da empresaà 
     if submit:
         st.success('')
         with st.spinner('Analisando sua tese...'):
-        # Modulos: 6 e 7 do colab
-        st.write(tese.head())
-        time.sleep(2)
+            # Modulos: 6 e 7 do colab
+            st.write(tese.head())
+            time.sleep(2)

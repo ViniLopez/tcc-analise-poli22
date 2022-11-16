@@ -66,7 +66,11 @@ if perfil == 'Investidor':
       # Modelo escolhido
       # Acurácia do modelo
     pag_avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa")
+    time.sleep(2)
+    st.write(pag_avaliar_empresa)
+    
     if (pag_avaliar_empresa):
+      time.sleep(2)
       st.write("!!!!!!!!!!!!! - Entrei no if - !!!!!!!!!!!!!")
       st.write(pag_avaliar_empresa)
       switch_page("avaliar empresa")

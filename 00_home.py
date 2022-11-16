@@ -58,7 +58,7 @@ elif perfil == 'Empreendedor':
     email_founder = st.text_input("Email:")
     telefone_founder = st.text_input("Telefone:")
     nome_founder =  st.text_input("Nome da sua empresa:")
-    data_fundacao = st.date_input("Data da fundação:")
+    data_fundacao = st.date_input("Data da fundação:", max_value=datetime.date.today())
     data_submissao = datetime.date.today()
     qtd_funcionarios = st.number_input("Quantidade de funcionários:", min_value=1, value=1, step=1, format='%d')
     industria = st.text_input("À qual categoria sua indústria pertence?")

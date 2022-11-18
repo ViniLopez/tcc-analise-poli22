@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from streamlit_extras.switch_page_button import switch_page
 import datetime
 import time
 
@@ -32,5 +31,5 @@ for potencial_investidor in investidores_cadastrados:
     # avaliacao_investidor = predict
   if (avaliacao_investidor):
     melhor_match.append(potencial_investidor)
-  else:
+  # else:
     # Melhoria: print da árvore de classificação das teses que não passou

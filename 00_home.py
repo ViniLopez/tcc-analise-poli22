@@ -8,6 +8,7 @@ import requests
 
 global_url = 'http://127.0.0.1:5000/'
 isApiRunning = True
+isApiRunning = False
 
 ###########################
 # FrontEnd pelo StreamLit #

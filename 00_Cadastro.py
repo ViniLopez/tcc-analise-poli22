@@ -66,11 +66,11 @@ if perfil == 'Investidor':
     st.write("Caso queira entender como o sistema funciona primeiro, preparamos este conjunto de dados para você simular!")
     # Camila Done: GET da tabela que usamos de teste
     if isApiRunning:
-      pandas_load = pd.read_csv("Tese_Investimento_Exemplo.csv")
-      exemplo_tese = pandas_load.to_csv(index = False).encode('utf-8')
+      #pandas_load = pd.read_csv("Tese_Investimento_Exemplo.csv")
+      #exemplo_tese = pandas_load.to_csv(index = False)
 
       baixou_modelo = st.download_button('Download modelo',
-                                        data=exemplo_tese,
+                                        data=pd.read_csv("Tese_Investimento_Exemplo.csv"),
                                         file_name='exemplo_tese.csv',
                                         mime='text/csv')
     else: 

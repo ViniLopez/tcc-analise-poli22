@@ -59,18 +59,18 @@ if perfil == 'Investidor':
       baixou_modelo = st.download_button('Download modelo', guia_importacao, 'guia_importacao_tese.csv')    
 
     if (baixou_modelo):
-      st.write('Download feito! Não esqueça de respeitar a formatação do arquivo!')
+      st.write('Download feito! Não se esqueça de respeitar a formatação do arquivo!')
   
   # Testes usados
   with col2:
     st.write("Caso queira entender como o sistema funciona primeiro, preparamos este conjunto de dados para você simular!")
     # Camila Done: GET da tabela que usamos de teste
     if isApiRunning:
-      #pandas_load = pd.read_csv("Tese_Investimento_Exemplo.csv")
-      #exemplo_tese = pandas_load.to_csv(index = False)
+      pandas_load = pd.read_csv("Tese_Investimento_Exemplo.csv")
+      exemplo_tese = pandas_load.to_csv(index = False)
 
       baixou_modelo = st.download_button('Download modelo',
-                                        data=pd.read_csv("Tese_Investimento_Exemplo.csv"),
+                                        data=exemplo_tese,
                                         file_name='exemplo_tese.csv',
                                         mime='text/csv')
     else: 

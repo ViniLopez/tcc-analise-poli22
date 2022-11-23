@@ -47,7 +47,7 @@ if perfil == 'Investidor':
 
     if isApiRunning:
       # Baixando template disponível no repositório
-      pandas_load = pd.read_json("https://raw.githubusercontent.com/ViniLopez/tcc-analise-poli22/main/investor_json_examples/investor_empty.json")
+      pandas_load = pd.read_json("tcc-analise-poli22/main/investor_json_examples/investor_empty.json")
       guia_importacao = convert_df(pandas_load)
 
       baixou_modelo = st.download_button('Download modelo',

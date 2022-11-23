@@ -48,7 +48,7 @@ if perfil == 'Investidor':
     if isApiRunning:
       # Baixando template disponível no repositório
       pandas_load = pd.read_json("investor_empty.json")
-      guia_importacao = pandas_load.to_csv(index = False, encoding='utf-8-sig')
+      guia_importacao = pandas_load.to_csv(index = False, encoding='latin1')
 
       baixou_modelo = st.download_button('Download modelo',
                                         data=guia_importacao,
@@ -68,7 +68,7 @@ if perfil == 'Investidor':
     if isApiRunning:
       pandas_load = pd.read_csv("Tese_Investimento_Exemplo.csv")
       st.write(pandas_load.head())
-      exemplo_tese = pandas_load.to_csv(index = False, encoding='utf-8-sig')
+      exemplo_tese = pandas_load.to_csv(index = False, encoding='latin1')
 
       baixou_modelo = st.download_button('Download modelo',
                                         data=exemplo_tese,

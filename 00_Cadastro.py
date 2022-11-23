@@ -147,7 +147,7 @@ if perfil == 'Investidor':
       # Acurácia do modelo
   avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
   if(avaliar_empresa):
-     switch_page("01_Sou_Investidor")
+     switch_page("Sou_Investidor")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")
@@ -203,7 +203,7 @@ elif perfil == 'Empreendedor':
           Redirecionando para a página de escolha de teses em instantes...''')
 
       time.sleep(3)
-      switch_page("02_Sou_Founder")
+      switch_page("Sou_Founder")
 
 # Explicação do projeto
 st.markdown("""---""")
@@ -211,4 +211,4 @@ st.subheader("Propósito do projeto:")
 st.write("Temos a visão de nos tornarmos um canal de conexão entre Investidores e Empreendedores. Através desta plataforma, é possível encontrar potenciais novas parcerias!")
 about = st.button("Conhecer saber mais do projeto!")
 if(about):
-    switch_page("99_About")
+    switch_page("About")

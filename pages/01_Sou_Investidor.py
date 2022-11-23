@@ -3,7 +3,7 @@ import pandas as pd
 import datetime
 import time
 
-st.title("Tese carregada - Análise de empresa")
+st.title("Tese carregada com sucesso")
 st.write("Preencha os dados a seguir para avaliar a aderência da empresaà tese:")
 
 # Camila - GET nome do investidor 

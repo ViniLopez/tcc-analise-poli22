@@ -19,7 +19,8 @@ isApiRunning = True
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 
-st.write(teste_vini.main(2))
+# Teste de integração entre outros arquivos
+#st.write(teste_vini.main(2))
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você e faça seu cadastro:")
 perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])

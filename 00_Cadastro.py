@@ -145,8 +145,8 @@ if perfil == 'Investidor':
 
       # Modelo escolhido
       # Acurácia do modelo
-    avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
-    if(avaliar_empresa):
+  avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
+  if(avaliar_empresa):
      switch_page("01_Sou_Investidor")
 
 elif perfil == 'Empreendedor':

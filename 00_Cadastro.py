@@ -10,7 +10,7 @@ import teste_vini
 
 global_url = 'http://127.0.0.1:5000/'
 isApiRunning = True
-isApiRunning = False
+#isApiRunning = False
 
 ###########################
 # FrontEnd pelo StreamLit #

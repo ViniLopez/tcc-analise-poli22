@@ -123,26 +123,31 @@ if perfil == 'Investidor':
     st.write("Tese do " + nome + ":")
     with st.spinner('Analisando sua tese...'):
       st.write(tese.head())
-      # Modulo 1 Colab - Data Augmentation
-      # Modulo 2 Colab - Treinar o modelo
+      # Modulo 2 Colab - Data Augmentation
+      #a01_sintese_preparacao_dados.main(file_name_01, base_analisadas_manual, tese_exemplo, IS_SHOWING_DETAILS, noise, seed)
+          
       # Modulo 3 Colab - Limpeza dos dados
       # Modulo 4 Colab - EDA
       # Modulo 5 Colab - Engenharia de variáveis
-      
+      #a02_tratamento_dados.main(file_name_01, file_name_02)
+          
+      # Seleção das 5 variáveis mais correlacionadas
+      #a03_filtro_parametros.main(file_name_02, many_file_name_03, IS_SHOWING_DETAILS, seed, filtro_parametros_03)
+            
       # Camila: POST conjuntos X e Y da tese
       
-      # Principais variáveis do modelo Random Forest
-
       # Modulo 6 Colab - Treino dos modelos
+      #a04_definicao_treino_modelo.main(file_name_03, model_file_name_04, seed)
+
       # Modulo 7 Colab - Aplicação dos dois
         # comparar .score e ver quem é maior
         # Camila: POST modelo escolhido
 
       # Modelo escolhido
       # Acurácia do modelo
-  # avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
-  # if(avaliar_empresa):
-  #   switch_page("01_Sou_Investidor")
+    avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
+    if(avaliar_empresa):
+     switch_page("01_Sou_Investidor")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")

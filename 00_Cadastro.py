@@ -8,6 +8,11 @@ import requests
 
 import teste_vini
 
+# Definição da Sidebar
+with st.sidebar:
+    st.subheader("Menu de navegação")
+    st.markdown("""---""")
+
 global_url = 'http://127.0.0.1:5000/'
 isApiRunning = True
 #isApiRunning = False
@@ -15,10 +20,6 @@ isApiRunning = True
 ###########################
 # FrontEnd pelo StreamLit #
 ###########################
-
-# Definição da Sidebar
-with st.sidebar:
-    st.subheader("Menu de navegação")
 
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")

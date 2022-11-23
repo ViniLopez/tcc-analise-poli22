@@ -8,28 +8,6 @@ import requests
 
 import teste_vini
 
-def format_sidebar():
-    st.markdown(
-        """
-            [data-testid="stSidebarNav"]::before {
-                content: "My Company Name";
-                margin-left: 20px;
-                margin-top: 20px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-# Definição da Sidebar
-with st.sidebar:
-    st.title("Menu de navegação")
-    st.markdown("""---""")
-    format_sidebar()
-
 global_url = 'http://127.0.0.1:5000/'
 isApiRunning = True
 #isApiRunning = False

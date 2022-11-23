@@ -13,4 +13,4 @@ st.markdown("""---""")
 st.write("Para conhecer mais do projeto, acesse o relatório completo do trabalho disponível em [Relatório TCC](https://docs.google.com/document/d/1jcARZxQTIwcTSX0b9vaBgocrXZKcrAfRFKzAaypXa74/edit?usp=sharing) ou o repositório do projeto final [Github - TCC](https://github.com/ViniLopez/tcc-analise-poli22).")
 
 st.markdown("""---""")
-st.write("Contato:\n  - Aline Lorena Tsuruda [LinkedIn](https://www.linkedin.com/in/aline-tsuruda/)\n  - Camila Miwa Ivano [LinkedIn](https://www.linkedin.com/in/camila-miwa-ivano/)\n  - Vinícius Cardieri Lopez [LinkedIn](https://www.linkedin.com/in/vinicius-cardieri-lopez-79ba17163/)")
+st.write("Contatos:\n  - Aline Lorena Tsuruda: [LinkedIn](https://www.linkedin.com/in/aline-tsuruda/)\n  - Camila Miwa Ivano: [LinkedIn](https://www.linkedin.com/in/camila-miwa-ivano/)\n  - Vinícius Cardieri Lopez: [LinkedIn](https://www.linkedin.com/in/vinicius-cardieri-lopez-79ba17163/)")

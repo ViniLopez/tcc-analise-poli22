@@ -46,7 +46,7 @@ if perfil == 'Investidor':
 
     if isApiRunning:
       # Baixando template disponível no repositório
-      pandas_load = pd.read_json("https://raw.githubusercontent.com/ViniLopez/tcc-analise-poli22/main/investor_json_examples/investor_empty.json?token=GHSAT0AAAAAAB2TQC3J5H4YVRQMHAOVWXJYY36NWWA")
+      pandas_load = pd.read_json("https://raw.githubusercontent.com/ViniLopez/tcc-analise-poli22/main/investor_json_examples/investor_empty.json")
       guia_importacao = convert_df(pandas_load)
 
       baixou_modelo = st.download_button('Download modelo',
@@ -65,7 +65,7 @@ if perfil == 'Investidor':
     st.write("Caso queira entender como o sistema funciona primeiro, preparamos este conjunto de dados para você simular!")
     # Camila Done: GET da tabela que usamos de teste
     if isApiRunning:
-      pandas_load = pd.read_json("https://raw.githubusercontent.com/ViniLopez/tcc-analise-poli22/main/investor_json_examples/Tese_Investimento_Exemplo.csv?token=GHSAT0AAAAAAB2TQC3IZ6B4MRL7KZK7IZHWY36N7BA")
+      pandas_load = pd.read_json("https://raw.githubusercontent.com/ViniLopez/tcc-analise-poli22/main/investor_json_examples/Tese_Investimento_Exemplo.csv")
       exemplo_tese = convert_df(pandas_load)
 
       baixou_modelo = st.download_button('Download modelo',

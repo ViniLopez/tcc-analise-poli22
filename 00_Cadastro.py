@@ -22,7 +22,7 @@ st.write("Ferramenta de suporte para decisão de investimento em startups a part
 # Teste de integração entre outros arquivos
 #st.write(teste_vini.main(2))
 
-st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você e faça seu cadastro:")
+st.subheader("Bem-vindo ao projeto, primeiramente, nos diga quem é você e faça seu cadastro:")
 perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
 st.markdown("""---""")
 isInvestor = False
@@ -35,7 +35,7 @@ def convert_df(df):
 if perfil == 'Investidor':
   isInvestor = True
 
-  st.write("Legal! Agora, faremos seu cadastro. Para isso precisaremos de um registro em planilha de empresas que você já analisou anteriormente e decidiu (investir ou não). Baixe a seguir os nossos templates!\n")
+  st.write("Legal! Agora, faremos seu cadastro. Para isso, precisaremos de um registro em planilha de empresas que você já analisou anteriormente e decidiu (investir ou não). Baixe a seguir os nossos templates!\n")
   
   col1, col2 = st.columns(2)
   
@@ -61,7 +61,7 @@ if perfil == 'Investidor':
   
   # Testes usados
   with col2:
-    st.write("Caso queira entender como funciona primeiro, preparamos este conjunto de dados para você simular!")
+    st.write("Caso queira entender como o sistema funciona primeiro, preparamos este conjunto de dados para você simular!")
     # Camila Done: GET da tabela que usamos de teste
     if isApiRunning:
       pandas_load = pd.read_json(r"investor_json_examples\\investor_filled.json")

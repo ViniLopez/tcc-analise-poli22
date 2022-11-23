@@ -46,7 +46,7 @@ if perfil == 'Investidor':
 
     if isApiRunning:
 #      pandas_load = pd.read_json(r"investor_json_examples\\investor_empty.json")
-      pandas_load = pd.read_json("investor_empty.json")
+      pandas_load = pd.read_json("investor_json_examples\\investor_empty.json")
       guia_importacao = convert_df(pandas_load)
 
       baixou_modelo = st.download_button('Download modelo',

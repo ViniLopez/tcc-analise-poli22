@@ -10,7 +10,7 @@ import teste_vini
 
 # Definição da Sidebar
 with st.sidebar:
-    st.subheader("Menu de navegação")
+    st.title("Menu de navegação")
     st.markdown("""---""")
 
 global_url = 'http://127.0.0.1:5000/'

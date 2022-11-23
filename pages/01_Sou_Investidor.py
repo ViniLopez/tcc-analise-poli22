@@ -17,7 +17,7 @@ with st.form("Preencha os dados a seguir para avaliar a aderência da empresaà 
     data_fundacao = st.date_input("Data da fundação:", max_value=datetime.date.today())
     data_submissao = datetime.date.today()
     qtd_funcionarios = st.number_input("Quantidade de funcionários:", min_value=1, value=1, step=1, format='%d')
-    industria = st.text_input("À qual categoria sua indústria pertence?", placeholder="Cleantech")
+    industria = st.text_input("À qual categoria sua indústria pertence?", placeholder="Fintech")
     prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
     
     # Camila - POST das infos da empresa acima

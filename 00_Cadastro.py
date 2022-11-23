@@ -195,7 +195,7 @@ elif perfil == 'Empreendedor':
           Redirecionando para a página de escolha de teses em instantes...''')
 
       time.sleep(3)
-      # switch_page("02_escolher_investidor")
+      switch_page("02_Sou_Founder")
 
 # Explicação do projeto
 st.markdown("""---""")

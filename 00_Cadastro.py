@@ -16,6 +16,10 @@ isApiRunning = True
 # FrontEnd pelo StreamLit #
 ###########################
 
+# Definição da Sidebar
+with st.sidebar:
+    st.subheader("Menu de navegação")
+
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 
@@ -139,7 +143,7 @@ if perfil == 'Investidor':
       # Acurácia do modelo
   # avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
   # if(avaliar_empresa):
-  #   switch_page("01_avaliar_empresa")
+  #   switch_page("01_Sou_Investidor")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")

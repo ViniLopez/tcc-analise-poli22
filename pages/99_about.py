@@ -1,7 +1,15 @@
 import streamlit as st
 
 st.title("Sobre o projeto")
-st.subheader("Trabalho de conclusão de curso da Aline Tsuruda, Camila Miwa e Vinícius Lopez na Escola Politécnica da USP - 2022")
+st.subheader("Trabalho de conclusão de curso: Escola Politécnica da USP - 2022")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.write("Alunos do projeto:\n  - Aline Lorena Tsuruda\n  - Camila Miwa Ivano\n  - Vinícius Cardieri Lopez")
+
+with col2:
+    st.write("Orientados por:\n  - Prof. Dr. Reginaldo Arakaki\n  - Co-Orientador: Victor Takashi Hayashi")
 
 st.markdown("""---""")
 st.write("Este projeto tem o intuito de aplicar os conceitos estudados ao longo do curso de Engenharia Elétrica, ênfase em Computação para a criação de uma ferramenta de suporte à decisão de investimentos.")

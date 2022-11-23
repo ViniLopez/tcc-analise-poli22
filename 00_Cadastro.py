@@ -67,6 +67,7 @@ if perfil == 'Investidor':
     # Camila Done: GET da tabela que usamos de teste
     if isApiRunning:
       pandas_load = pd.read_csv("Tese_Investimento_Exemplo.csv")
+      st.write(pandas_load.head())
       exemplo_tese = pandas_load.to_csv(index = False)
 
       baixou_modelo = st.download_button('Download modelo',

@@ -9,11 +9,11 @@ st.write("Preencha os dados a seguir para avaliar a aderência da empresaà tese
 # Camila - GET nome do investidor 
 # Camila - GET variáveis X e Y da tese, pré-processada na home
 
-with st.form("Preencha os dados a seguir para avaliar a aderência da empresaà tese:", clear_on_submit=False):
-    nome_founder =  st.text_input("Seu nome:", placeholder="Fulano da Silva")
+with st.form("Preencha os dados a seguir para avaliar a aderência da empresa à tese:", clear_on_submit=False):
+    nome_founder =  st.text_input("Nome founder:", placeholder="Fulano da Silva")
     email_founder = st.text_input("Email:", placeholder="fulano.silva@gmail.com")
     telefone_founder = st.text_input("Telefone:", placeholder="(__) _____-____")
-    nome_empresa =  st.text_input("Nome da sua empresa:", placeholder="Nubank")
+    nome_empresa =  st.text_input("Nome da empresa candidata:", placeholder="Nubank")
     data_fundacao = st.date_input("Data da fundação:", max_value=datetime.date.today())
     data_submissao = datetime.date.today()
     qtd_funcionarios = st.number_input("Quantidade de funcionários:", min_value=1, value=1, step=1, format='%d')

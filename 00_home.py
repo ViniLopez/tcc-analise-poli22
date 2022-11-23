@@ -6,6 +6,8 @@ import time
 
 import requests
 
+import teste.py
+
 global_url = 'http://127.0.0.1:5000/'
 isApiRunning = True
 #isApiRunning = False
@@ -16,6 +18,8 @@ isApiRunning = True
 
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
+
+st.write(funcao_especial(2))
 
 st.subheader("Bem-vindo ao projeto, primeiramente nos diga, quem é você e faça seu cadastro:")
 perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])

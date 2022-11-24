@@ -99,7 +99,7 @@ if perfil == 'Investidor':
     aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
     submit = st.form_submit_button("Começar análise")
 
-  if (submit and aceito_lgpd and tese is not None):
+  if (submit and email and aceito_lgpd and tese is not None):
 
     # Camila Done: POST informações de cadastro acima
 
@@ -111,9 +111,9 @@ if perfil == 'Investidor':
         "phone" : telefone,
         "investor": isInvestor,
         "password": senha
-      } 
+      }
 
-      inserted = requests.post(global_url + 'profile', json = add_profile)
+      inserted = requests.post(global_url + 'profile/' + email, json = add_profile)
 
       st.success(f"{inserted.json()['name']}, cadastro concluído com sucesso!")
     else:

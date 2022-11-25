@@ -9,51 +9,6 @@ import teste_pymongo
 import teste_vini
 import investor_json_examples
 
-global_url = 'http://127.0.0.1:5000/'
-isApiRunning = True
-#isApiRunning = False
-
-# Conexão ao BD e definição de endpoints
-
-app = Flask(__name__)
-app.config["DEBUG"] = True
-
-CONNECTION_STRING = "mongodb+srv://tcc_avc:adm321@tcccluster.wzgcevd.mongodb.net/test"
-# Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
-db_client = MongoClient(CONNECTION_STRING)
-
-@app.route('/profile/<user_name>', methods=['GET'])
-def get_user_profile(user_name):
-    profile_collection = db_users['profile']
-    message = profile_collection.find_one({"_user_name": user_name})
-
-    # message received:
-    # {'_id': ObjectId('6   329244d285409a800aa376e'), 'name': 'Joca Joao Joaquim', 'email': 'joca@email.com', 'investor': True, '_user_name': 'jocaJ'}
-
-    if not message: return "FAILED TO GET PROFILE", 400
-    return json.loads(json_util.dumps(message)), 200
-
-@app.route('/profile', methods=['POST'])
-def create_user_profile():
-    data = request.get_json()
-
-    if '_user_name' not in data: return "MISSING USER NAME", 400
-
-    if not isTesting:
-        # Certify all mandatory data will be set
-        if 'password' not in data: return "MISSING PASSWORD", 400
-        if 'investor' not in data: return "MISSING INVESTOR PROFILE", 400    
-        if 'email' not in data: return "MISSING EMAIL", 400
-
-    profile_collection = db_users['profile']
-    message = profile_collection.insert_one(data)
-    
-    if not message.acknowledged: return "FAILED", 400    
-    # we can also return message.inserted_id, but it does not seem to show good info
-    users = get_user_profile(data['_user_name'])
-
-    return users[0], 200
-
 ###########################
 # FrontEnd pelo StreamLit #
 ###########################

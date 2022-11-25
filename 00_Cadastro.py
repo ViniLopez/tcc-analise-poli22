@@ -4,14 +4,7 @@ from streamlit_extras.switch_page_button import switch_page
 import datetime
 import time
 
-##
-import json
-import pdb
-from pymongo import MongoClient
-from flask import Flask, request, jsonify, make_response
-
-import requests
-##
+import teste_pymongo
 
 import teste_vini
 import investor_json_examples

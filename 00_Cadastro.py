@@ -9,7 +9,6 @@ import json
 import pdb
 from pymongo import MongoClient
 from flask import Flask, request, jsonify, make_response
-import bson.json_util as json_util
 
 import requests
 ##

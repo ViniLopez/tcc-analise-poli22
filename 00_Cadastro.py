@@ -4,10 +4,14 @@ from streamlit_extras.switch_page_button import switch_page
 import datetime
 import time
 
-import teste_pymongo
+import requests
 
 import teste_vini
 import investor_json_examples
+
+global_url = 'http://127.0.0.1:5000/'
+isApiRunning = True
+#isApiRunning = False
 
 ###########################
 # FrontEnd pelo StreamLit #

@@ -134,7 +134,7 @@ if perfil == 'Investidor':
 
     # Iniciar EDA e descrição da tese
     st.markdown("""---""")
-    st.subheader("Análise da tese " + inserted.json()['theory_name'] + ":")
+    st.subheader('Análise da tese "' + inserted.json()['theory_name'] + '":')
     with st.spinner('Analisando sua tese...'):
       # Rotinas: Data Augmentation; EDA
       historico_cru, duracao_a01 = a01_sintese_preparacao_dados.main(tese_exemplo=tese, current_user=email, theory_name=nome_tese)
@@ -164,7 +164,8 @@ if perfil == 'Investidor':
 
         cr = classification_report(y_val, y_pred_rf, output_dict=True)
         cr = pd.DataFrame(cr)
-        st.write("Relatório do modelo:\n", cr)
+        cr = cr.applymap(lambda x: str(int(x)) if abs(x - int(x)) < 1e-6 else str(round(x,2)))
+        st.write("Relatório do modelo:\n", cr.T)
 
       else:
         st.write("O modelo escolhido foi o K-Nearest Neighbours")
@@ -176,7 +177,8 @@ if perfil == 'Investidor':
 
         cr = classification_report(y_val, y_pred_knn, output_dict=True)
         cr = pd.DataFrame(cr)
-        st.write("Relatorio do modelo:\n", cr)
+        cr = cr.applymap(lambda x: str(int(x)) if abs(x - int(x)) < 1e-6 else str(round(x,2)))
+        st.write("Relatório do modelo:\n", cr.T)
 
   avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
   

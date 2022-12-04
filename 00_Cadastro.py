@@ -4,10 +4,19 @@ from streamlit_extras.switch_page_button import switch_page
 import datetime
 import time
 
+from PIL import Image
+
 import requests
 
-import teste_vini
 import investor_json_examples
+
+import a01_sintese_preparacao_dados
+import a02_tratamento_dados
+import a03_filtro_parametros
+import a04_estatisticas_modelo
+import a05_analise_nova_empresa
+
+from sklearn.metrics import (confusion_matrix, ConfusionMatrixDisplay, classification_report)
 
 global_url = 'http://127.0.0.1:5000/'
 isApiRunning = True
@@ -20,9 +29,6 @@ isApiRunning = True
 st.title("TCC - AUTOMATIZAÇÃO DE ANÁLISE DE EMPRESAS PARA AUXÍLIO DE DECISÃO DE INVESTIMENTOS")
 st.write("Ferramenta de suporte para decisão de investimento em startups a partir de Machine Learning")
 
-# Teste de integração entre outros arquivos
-#st.write(teste_vini.main(2))
-
 st.subheader("Bem-vindo ao projeto, primeiramente, nos diga quem é você e faça seu cadastro:")
 perfil = st.radio('Eu sou:', ['Investidor', 'Empreendedor'])
 st.markdown("""---""")
@@ -34,7 +40,16 @@ def convert_df(df):
     return df.to_csv(index = False).encode('utf-8')
 
 if perfil == 'Investidor':
+
+  if 'investor_username' not in st.session_state:
+    st.session_state['investor_username'] = ''
+  if 'theory_name' not in st.session_state:  
+    st.session_state['theory_name'] = ''
+  if 'global_url' not in st.session_state:
+    st.session_state['global_url'] = 'http://127.0.0.1:5000/'
+
   isInvestor = True
+  avaliar_empresa = False
 
   st.write("Legal! Agora, faremos seu cadastro. Para isso, precisaremos de um registro em planilha de empresas que você já analisou anteriormente e decidiu (investir ou não). Baixe a seguir os nossos templates!\n")
   
@@ -93,14 +108,12 @@ if perfil == 'Investidor':
     st.write("\nAgora, sobre sua tese de investimentos:")
 
     tese = st.file_uploader('Faça upload das últimas empresas que você analisou aqui: (CSV)', type='csv')
+    nome_tese = st.text_input("Identificador (nome) da sua tese:", placeholder="Tese do Fulano")
 
     aceito_lgpd = st.checkbox('Concordo em compartilhar essas informações e sei que o projeto armazenará os dados de minha tese anonimizados, não sendo permitido o compartilhamento dos mesmos.')
     submit = st.form_submit_button("Começar análise")
 
   if (submit and aceito_lgpd and tese is not None):
-
-    # Camila Done: POST informações de cadastro acima
-
     if isApiRunning:
       add_profile = {
         "_user_name": email,
@@ -108,7 +121,8 @@ if perfil == 'Investidor':
         "email" : email,
         "phone" : telefone,
         "investor": isInvestor,
-        "password": senha
+        "password": senha,
+        "theory_name": nome_tese
       } 
 
       inserted = requests.post(global_url + 'profile', json = add_profile)
@@ -120,29 +134,56 @@ if perfil == 'Investidor':
 
     # Iniciar EDA e descrição da tese
     st.markdown("""---""")
-    st.write("Tese do " + nome + ":")
+    st.subheader("Análise da tese " + inserted.json()['theory_name'] + ":")
     with st.spinner('Analisando sua tese...'):
-      st.write(tese.head())
-      # Modulo 1 Colab - Data Augmentation
-      # Modulo 2 Colab - Treinar o modelo
-      # Modulo 3 Colab - Limpeza dos dados
-      # Modulo 4 Colab - EDA
-      # Modulo 5 Colab - Engenharia de variáveis
-      
-      # Camila: POST conjuntos X e Y da tese
-      
-      # Principais variáveis do modelo Random Forest
+      # Rotinas: Data Augmentation; EDA
+      historico_cru, duracao_a01 = a01_sintese_preparacao_dados.main(tese_exemplo=tese, current_user=email, theory_name=nome_tese)
+      # Rotinas: Limpeza dos dados; Engenharia de variáveis
+      historico_tratado, duracao_a02 = a02_tratamento_dados.main(current_user=email, theory_name=nome_tese)
 
-      # Modulo 6 Colab - Treino dos modelos
-      # Modulo 7 Colab - Aplicação dos dois
-        # comparar .score e ver quem é maior
-        # Camila: POST modelo escolhido
+      st.write("Terminamos o tratamento! Este é o cabeçalho (cinco primeiras linhas) de seu histórico de decisões que está sendo analisado:")
+      st.write(historico_cru.drop('Nome da empresa', axis=1).head())
 
-      # Modelo escolhido
-      # Acurácia do modelo
-  # avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
-  # if(avaliar_empresa):
-  #   switch_page("01_Sou_Investidor")
+    with st.spinner('Agora, estamos selecionando as colunas que têm mais influência na sua decisão!'):
+      # Rotinas: Seleção de variáveis
+      historico_filtrado, var_explicativas, duracao_a03 = a03_filtro_parametros.main(current_user=email, theory_name=nome_tese)
+      st.write("Estas são as variáveis que identificamos maior correlação com a sua decisão de investir ou não:\n")
+      st.write(var_explicativas.columns.to_list())
+
+    with st.spinner('Avaliando os modelos disponíveis para sua tese...'):
+      # Rotinas: Treino dos modelos; aplicação dos dois
+      labels_rf, labels_knn, score_rf, score_knn, y_val, y_pred_rf, y_pred_knn, duracao_a04 = a04_estatisticas_modelo.main(investor_name=email, theory_name=nome_tese)
+
+      if (score_rf > score_knn):
+        st.write("O modelo escolhido foi o Random Forest!")
+        st.write("Acurácia no conjunto de validação: {:.3f}".format(score_rf))
+        
+        cm = confusion_matrix(y_val, y_pred_rf, labels=labels_rf)
+        cm = pd.DataFrame(cm, index=["Previu - Não investir", "Previu - Investir"], columns=["Verdade - Não investir", "Verdade - Investir"])
+        st.write("Matriz de confusão:\n", cm)
+
+        cr = classification_report(y_val, y_pred_rf, output_dict=True)
+        cr = pd.DataFrame(cr)
+        st.write("Relatório do modelo:\n", cr)
+
+      else:
+        st.write("O modelo escolhido foi o K-Nearest Neighbours")
+        st.write("Acurácia no conjunto de validação: {:.3f}".format(score_knn))
+        
+        cm = confusion_matrix(y_val, y_pred_knn, labels=labels_knn)
+        cm = pd.DataFrame(cm, index=["Previu - Não investir", "Previu - Investir"], columns=["Verdade - Não investir", "Verdade - Investir"])
+        st.write("Matriz de confusão:\n", cm)
+
+        cr = classification_report(y_val, y_pred_knn, output_dict=True)
+        cr = pd.DataFrame(cr)
+        st.write("Relatorio do modelo:\n", cr)
+
+  avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
+  
+  if(avaliar_empresa):
+    st.session_state.investor_username = email
+    st.session_state.theory_name = nome_tese
+    switch_page("Sou_Investidor")
 
 elif perfil == 'Empreendedor':
   st.header("Nos conte mais de sua empresa")
@@ -198,7 +239,7 @@ elif perfil == 'Empreendedor':
           Redirecionando para a página de escolha de teses em instantes...''')
 
       time.sleep(3)
-      switch_page("02_Sou_Founder")
+      switch_page("Sou_Founder")
 
 # Explicação do projeto
 st.markdown("""---""")
@@ -206,4 +247,4 @@ st.subheader("Propósito do projeto:")
 st.write("Temos a visão de nos tornarmos um canal de conexão entre Investidores e Empreendedores. Através desta plataforma, é possível encontrar potenciais novas parcerias!")
 about = st.button("Conhecer saber mais do projeto!")
 if(about):
-    switch_page("99_About")
+    switch_page("About")

@@ -13,9 +13,6 @@ global_url = st.session_state.global_url
 st.title("Tese " + nome_tese + " carregada com sucesso")
 st.write("Preencha os dados a seguir para avaliar a aderência da empresaà tese:")
 
-# Camila - GET nome do investidor 
-# Camila - GET variáveis X e Y da tese, pré-processada na home
-
 with st.form("Preencha os dados a seguir para avaliar a aderência da empresa à tese:", clear_on_submit=False):
     nome_founder =  st.text_input("Nome founder:", placeholder="Fulano da Silva")
     email_founder = st.text_input("Email founder:", placeholder="fulano.silva@gmail.com")
@@ -26,8 +23,6 @@ with st.form("Preencha os dados a seguir para avaliar a aderência da empresa à
     qtd_funcionarios = st.number_input("Quantidade de funcionários:", min_value=1, value=1, step=1, format='%d')
     industria = st.text_input("À qual categoria sua indústria pertence?", placeholder="Fintech")
     prod_proprio = st.radio('Seu produto principal é próprio?', ['Sim', 'Não'])
-
-    # TO-DO: A partir daqui ver se tá sendo salvo
     cnpj_empresa = st.number_input("CNPJ da empresa candidata: ", min_value=1, value=1, step=1, help='Digite apenas os números!', format='%d')
     ger_receita = st.radio('Já está gerando receita?', ['Sim', 'Não'])
     if (ger_receita == 'Sim'):
@@ -37,8 +32,6 @@ with st.form("Preencha os dados a seguir para avaliar a aderência da empresa à
     cli_recor = st.radio('Clientes são recorrentes?', ['Sim', 'Não'])
     cac_hist = st.number_input("CAC histórico (R$/clientes):", min_value=1, value=1, step=1, format='%d')
     curso_founder = st.text_input("Curso do founder:", placeholder="Engenharia")
-    #data_decisao
-    #Investiu?
 
     submit = st.form_submit_button("Fazer cadastro")                                 
     if submit:
@@ -75,12 +68,9 @@ with st.form("Preencha os dados a seguir para avaliar a aderência da empresa à
           }
 
           company_inserted = requests.post(global_url + 'company', json = add_company)
-          st.write(company_inserted)
           if (company_inserted.status_code == 400):
             json_to_update = { "$set": add_company}
             company_inserted = requests.put(global_url + 'company/id/' + str(cnpj_empresa), json = json_to_update)
-          st.write(company_inserted)
 
         st.success('Empresa submetida para análise!')
-        with st.spinner('Avaliando a aderência da ' + nome_empresa + ' à tese...'):
-            a05_analise_nova_empresa.main(global_url, email_investor, nome_tese, cnpj_empresa)
+        a05_analise_nova_empresa.main(global_url, email_investor, nome_tese, cnpj_empresa)

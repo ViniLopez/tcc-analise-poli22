@@ -60,7 +60,7 @@ def sugestoes(empresa_positiva, nova, modelo, tipo,
           #print("\n[INFO] {}: Simulacao interessante! Alteracao do parametro: {}".format(tipo, parametro))
           #print(nova_alterada)
 
-          st.write("\n[INFO] {}: Simulacao interessante! Alteracao do parametro: {}".format(tipo, parametro))
+          st.write("\n[INFO] {}: Encontramos uma proposta de alteração!\nNo parâmetro: {}".format(tipo, parametro))
           st.write(nova_alterada)
 
     parametros = empresa_positiva.columns.tolist()
@@ -80,7 +80,7 @@ def sugestoes(empresa_positiva, nova, modelo, tipo,
                 #tipo, parametros[index_parametro], parametros[second_index]))
               #print(nova_alterada)
 
-              st.write("\n[INFO] {}: Simulacao interessante! Alteracao dos parametros: {} e {}".format(
+              st.write("\n[INFO] {}: Encontramos uma proposta de alteração!\nNos parâmetros: {} e {}".format(
                       tipo, parametros[index_parametro], parametros[second_index]))
               st.write(nova_alterada)
               
@@ -95,7 +95,7 @@ def sugestoes(empresa_positiva, nova, modelo, tipo,
     if mongo_response.status_code == 200:
       print('\n[INFO] Resultado salvo na base')
 
-    print("\n[INFO] Fim das simulacoes - modelo {}".format(tipo))
+    st.write("\nFim das simulações no modelo {}!".format(tipo))
   
 def analise(X_nova_empresa, historico_positivo, modelo, tipo = "rf",
             GLOBAL_URL = 'http://127.0.0.1:5000/', 
@@ -105,19 +105,17 @@ def analise(X_nova_empresa, historico_positivo, modelo, tipo = "rf",
     print("\n[INFO] Iniciando analise da nova empresa - modelo {}".format(tipo))
 
     #print(X_nova_empresa)
-    st.write(X_nova_empresa)
     isApproved = modelo.predict(X_nova_empresa)
     print("\n[INFO] INVESTIR!" if isApproved else "\n[INFO] Nao aconselhamos, veja os comentarios!")
+    st.write("[DECISÃO] Aprovada! Essa empresa vale a pena olhar a fundo!" if isApproved else "\n[DECISÃO] Não aconselhamos seguir com esta empresa... veja os comentários e entenda o que poderia mudar!")
 
-    json_to_save = {
-        '_company_cnpj': company_cnpj,
-        '_theory_name': theory_name,
-        'approved': bool(isApproved)
-    }
+    json_to_save = {'_company_cnpj': company_cnpj,
+                    '_theory_name': theory_name,
+                    'approved': bool(isApproved)}
 
     json_to_update = { "$set": json_to_save }
     mongo_response = requests.put(GLOBAL_URL + 'results/{}/{}'.format(theory_name, company_cnpj),
-        json = json_to_update)
+                                  json = json_to_update)
 
     if mongo_response.status_code == 400:
       mongo_response = requests.post(GLOBAL_URL + 'results', json = json_to_save)  
@@ -157,8 +155,11 @@ def analise(X_nova_empresa, historico_positivo, modelo, tipo = "rf",
       else:     
         print('\n[INFO] Proximo teste: o mais proximo esta no indice {} com distancia {}'.format(
           index_empresa_similar[0][0], sugestao.min()))
+        st.write('\n[ANÁLISE] Encontramos uma empresa parecida (localizada no índice {} do histórico, e a uma distância {} da sua empresa), mas que fora aprovada!\nVeja o que há de diferente\nExemplo positivo:'.format(
+          index_empresa_similar[0][0], sugestao.min()))
         print(empresa_similar)
-        
+        st.write(empresa_similar)
+
         # json_to_update = { "$set": {"suggestions": {} }}
         # mongo_response = requests.put(GLOBAL_URL + 'results/{}/{}'.format(theory_name, company_cnpj),
         #     json = json_to_update)  
@@ -189,7 +190,8 @@ def main(GLOBAL_URL = 'http://127.0.0.1:5000/',
 
     print('[INFO] Inicio da etapa 05 - Analise da empresa cadastrada')
 
-    knn, rf = carregar_modelo(GLOBAL_URL, investor_name, theory_name)
+    with st.spinner('Carregando o modelo treinado...'):
+      knn, rf = carregar_modelo(GLOBAL_URL, investor_name, theory_name)
 
     # historico = pd.read_csv(base_historica)
     get_from_mongo = requests.get(GLOBAL_URL + 'investors_theory/historic_filtrado/{}/{}'.format(investor_name,theory_name))
@@ -223,7 +225,7 @@ def main(GLOBAL_URL = 'http://127.0.0.1:5000/',
 
     # mudança: tirei o ['company_data'], pois estou salvando essa empresa na collection "raw_data" e não existe esse campo
     X_nova_empresa = pd.DataFrame.from_dict(get_from_mongo.json(), orient = 'columns')
-    st.write("Opa, a empresa cadastrada aqui:")
+    st.write("A empresa cadastrada para avaliação é:")
     st.write(X_nova_empresa)
 
     # as colunas do X têm que ter os nomes apropriados, para conseguirmos comparar:
@@ -251,8 +253,8 @@ def main(GLOBAL_URL = 'http://127.0.0.1:5000/',
 
     X_nova_empresa.drop(["Data_fundacao", "Data_submissao"], axis=1, inplace = True)
 
-    st.write("Mudei o nome das coisas, tá melhor?")
-    st.write(X_nova_empresa)
+    #st.write("Mudei o nome das coisas, tá melhor?")
+    #st.write(X_nova_empresa)
 
     columns_to_remove = []
 
@@ -272,20 +274,22 @@ def main(GLOBAL_URL = 'http://127.0.0.1:5000/',
     X_nova_empresa = X_nova_empresa.astype(dtype = columns_dtypes)
     X_nova_empresa.reset_index(inplace=True, drop = True)
 
-    st.write("Essas variáveis aqui que queremos analisar (colunas):")
-    st.write(filter_cols)
-
     for coluna in X_nova_empresa.columns.tolist():
       if coluna not in filter_cols:
         X_nova_empresa.drop(coluna, axis=1, inplace=True)
 
-    st.write("Essas variáveis aqui que serão analisadas:")
+    st.write("As variáveis a serem analisadas serão:")
     st.write(X_nova_empresa)
 
-    # Problema: estamos dropando tudo =(
+    st.markdown("""---""")
 
-    analise(X_nova_empresa, historico_positivo, knn, "knn", GLOBAL_URL, theory_name, current_company) 
-    analise(X_nova_empresa, historico_positivo, rf, "rf", GLOBAL_URL, theory_name, current_company) 
+    st.subheader("Análise pelo modelo K-Nearest Neighbours")
+    with st.spinner('Agora sim! Analisando sua empresa com o modelo K-NN...'):
+      analise(X_nova_empresa, historico_positivo, knn, "knn", GLOBAL_URL, theory_name, current_company) 
+    st.markdown("""---""")
+    st.subheader("Análise pelo modelo Random Forest")
+    with st.spinner('Por fim, vamos analisando também pelo modelo Random Forest...'):
+      analise(X_nova_empresa, historico_positivo, rf, "rf", GLOBAL_URL, theory_name, current_company) 
 
     end = time.time()
     print('[SUCCESS] Fim da etapa 05. Durou: {} segundos'.format(round(end-start, 3)))

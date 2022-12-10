@@ -40,7 +40,6 @@ investidores_cadastrados = pd.DataFrame(list(zip(nome_investidores_cadastrados,
                                                  email_investidores_cadastrados,
                                                  theory_name_investidores_cadastrados)),
                                         columns =['name', 'email', 'theory_name'])
-st.write(investidores_cadastrados)
 # Ou podemos fechar para deixar Hard-Coded alguns só hehe
 # nome_investidores_cadastrados = ["Anima", "Sequoia Capital", "Warren Buffet"]
 

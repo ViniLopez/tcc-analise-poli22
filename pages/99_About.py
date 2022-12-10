@@ -21,7 +21,7 @@ st.write("Em seguida, recebe a descrição de uma empresa candidata para avaliar
 
 st.markdown("""---""")
 st.subheader("Trabalho completo")
-st.write("Para conhecer mais do projeto, acesse o relatório completo do trabalho disponível em [Relatório TCC](https://docs.google.com/document/d/1jcARZxQTIwcTSX0b9vaBgocrXZKcrAfRFKzAaypXa74/edit?usp=sharing) ou o repositório do projeto final [Github - TCC](https://github.com/ViniLopez/tcc-analise-poli22).")
+st.write("Para conhecer mais do projeto, acesse a nossa [Landing Page](https://sites.google.com/usp.br/tcc-analise-empresas-poli22/in%C3%ADcio)!")
 
 st.markdown("""---""")
 st.subheader("Contatos")

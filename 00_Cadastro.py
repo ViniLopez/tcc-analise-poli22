@@ -66,7 +66,7 @@ if perfil == 'Investidor':
       pandas_load = pd.read_json("investor_empty.json")
       guia_importacao = pandas_load.to_csv(index = False)
 
-      baixou_modelo = st.download_button('Download modelo',
+      baixou_modelo = st.download_button('Download template',
                                         data=guia_importacao,
                                         file_name='guia_importacao_tese.csv',
                                         mime='text/csv')
@@ -97,7 +97,8 @@ if perfil == 'Investidor':
     if (baixou_modelo):
       st.write('Download feito! Siga adiante!')
   st.markdown("""---""")
-  
+
+  st.header("Faça seu cadastro como investidor e comece a analisar empresas candidatas!")  
   # Cadastro inicial com informações pessoais e da tese de investimentos
   with st.form("Nos conte mais sobre você:", clear_on_submit=False):
 
@@ -182,7 +183,7 @@ if perfil == 'Investidor':
         st.write("Relatório do modelo:\n", cr.T)
 
   avaliar_empresa = st.button("Finalizar cadastro e avaliar uma empresa!")
-  
+    
   if(avaliar_empresa):
     st.session_state.investor_username = email
     st.session_state.theory_name = nome_tese

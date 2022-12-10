@@ -10,8 +10,8 @@ email_investor = st.session_state.investor_username
 nome_tese = st.session_state.theory_name
 global_url = st.session_state.global_url
 
-st.title("Tese " + nome_tese + " carregada com sucesso")
-st.write("Preencha os dados a seguir para avaliar a aderência da empresaà tese:")
+st.title('Tese "' + nome_tese + '" carregada com sucesso')
+st.write("Preencha os dados a seguir para avaliar a aderência da empresa à tese:")
 
 with st.form("Preencha os dados a seguir para avaliar a aderência da empresa à tese:", clear_on_submit=False):
     nome_founder =  st.text_input("Nome founder:", placeholder="Fulano da Silva")
